@@ -1,0 +1,5 @@
+@WebAPI_SQLite_EF_HostAddress = https://localhost:7269
+
+GET {{WebAPI_SQLite_EF_HostAddress}}/api/movies
+
+###
