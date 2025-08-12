@@ -1,5 +1,8 @@
 ﻿namespace WebAPI_SQLite_EF.Shared.DTO
 {
+    /// <summary>
+    ///     Data Transfer Object (DTO) for Movie.
+    /// </summary>
     public class DtoMovie
     {
         public int Id { get; set; }
