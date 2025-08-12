@@ -8,6 +8,11 @@ namespace WebAPI_SQLite_EF.Controllers
     [ApiController]
     public class MoviesController(IMovieService service) : ControllerBase
     {
+        /// <summary>
+        ///     Gets all movies from the database.
+        /// </summary>
+        /// <returns>IActionResult - IEnumerable<<see cref="DtoMovie"/>></returns>
+        /// <exception cref="Exception">Throws an exception if the retrieval fails</exception>"
         [HttpGet("GetAllAsync")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -26,6 +31,12 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Gets all movies by genre Id from the database.
+        /// </summary>
+        /// <param name="genreId">Genre Id</param>
+        /// <returns>IActionResult - IEnumerable<<see cref="DtoMovie"/>></returns>
+        /// <exception cref="Exception">Throws an exception if the retrieval fails</exception>
         [HttpGet("GetAllByGenreAsync/{genreId}")]
         public async Task<IActionResult> GetAllByGenreAsync(int genreId)
         {
@@ -44,6 +55,12 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Gets a movie by its Id.
+        /// </summary>
+        /// <param name="id">Unique movie Id</param>
+        /// <returns><see cref="DtoMovie"/></returns>
+        /// <exception cref="Exception">Throws an exception if the retrieval fails</exception>
         [HttpGet("GetByIdAsync/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
@@ -62,6 +79,13 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+
+        /// <summary>
+        ///     Adds a new movie to the database.
+        /// </summary>
+        /// <param name="obj">A <see cref="DtoMovie"/> object</param>
+        /// <returns>The Id of the newly added movie</returns>
+        /// <exception cref="Exception">Throws an exception if the addition fails</exception>
         [HttpPost("AddAsync")]
         public async Task<IActionResult> AddAsync([FromBody] DtoMovie obj)
         {
@@ -80,6 +104,11 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Updates an existing movie in the database.
+        /// </summary>
+        /// <param name="obj">A <see cref="DtoMovie"/> object</param>
+        /// <returns>IActionResult - NoContent / NotFound</returns>
         [HttpPut("UpdateAsync")]
         public async Task<IActionResult> UpdateAsync([FromBody] DtoMovie obj)
         {
@@ -100,6 +129,11 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Deletes a movie by its Id.
+        /// </summary>
+        /// <param name="id">Unique movie Id</param>
+        /// <returns>IActionResult - NoCOntent / NotFound</returns>
         [HttpDelete("DeleteAsync/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
