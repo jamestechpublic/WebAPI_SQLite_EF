@@ -6,7 +6,7 @@ internal partial class Movie
 
     public string MovieName { get; set; } = null!;
 
-    public int GenreId { get; set; }
+    public int GenreId { get; set; } // Foreign key to Genre
 
     public int? ReleaseYear { get; set; }
 

@@ -18,9 +18,19 @@ internal partial class MovieDataContext : DbContext
 
     public virtual DbSet<Movie> Movies { get; set; }
 
+    /// <summary>
+    ///     Configures the database connection for the context.
+    ///     Ensures that the context uses SQLite with a connection string named "DbMovieData".
+    /// </summary>
+    /// <param name="optionsBuilder"></param>
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlite("Name=ConnectionStrings:DbMovieData");
 
+    /// <summary>
+    ///     Setup the model for the context.
+    ///     Includes configuration for the Genre and Movie entities,
+    /// </summary>
+    /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Genre>(entity =>
