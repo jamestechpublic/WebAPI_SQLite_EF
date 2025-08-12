@@ -1,5 +1,8 @@
 ﻿namespace WebAPI_SQLite_EF.Models;
 
+/// <summary>
+///     Movie model representing a movie entity.
+/// </summary>
 internal partial class Movie
 {
     public int Id { get; set; }
