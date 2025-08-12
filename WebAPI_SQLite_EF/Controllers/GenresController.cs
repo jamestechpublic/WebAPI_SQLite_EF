@@ -8,6 +8,11 @@ namespace WebAPI_SQLite_EF.Controllers
     [ApiController]
     public class GenresController(IGenreService service) : ControllerBase
     {
+        /// <summary>
+        ///     Return all genres from the database.
+        /// </summary>
+        /// <returns>IActionResult - IEnumerable<<see cref="DtoGenre"/>></returns>
+        /// <exception cref="Exception">Throws an exception if the retrieval fails</exception>"
         [HttpGet("GetAllAsync")]
         public async Task<IActionResult> GetAllAsync()
         {
@@ -26,6 +31,12 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Returns a genre by its ID.
+        /// </summary>
+        /// <param name="id">Unique genre Id</param>
+        /// <returns>IActionResult - <see cref="DtoGenre"/></returns>
+        /// <exception cref="Exception">Throws an exception if the retrieval fails</exception>"
         [HttpGet("GetByIdAsymnc/{id}")]
         public async Task<IActionResult> GetByIdAsync(int id)
         {
@@ -43,6 +54,13 @@ namespace WebAPI_SQLite_EF.Controllers
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
+
+        /// <summary>
+        ///     Adds a new genre to the database.
+        /// </summary>
+        /// <param name="obj">A <see cref="DtoGenre"/> object</param>
+        /// <returns>IActionResult - Id of the newly added genre</returns>
+        /// <exception cref="Exception">Throws an exception if the addition fails</exception>""
         [HttpPost("AddAsync")]
         public async Task<IActionResult> AddAsync([FromBody] DtoGenre obj)
         {
@@ -61,6 +79,12 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Updates an existing genre in the database.
+        /// </summary>
+        /// <param name="obj">A <see cref="DtoGenre"/> object</param>
+        /// <returns>IActionResult - NoContent</returns>
+        /// <exception cref="Exception">Throws an exception if the update fails</exception>"
         [HttpPut("UpdateAsync")]
         public async Task<IActionResult> UpdateAsync([FromBody] DtoGenre obj)
         {
@@ -81,6 +105,12 @@ namespace WebAPI_SQLite_EF.Controllers
             }
         }
 
+        /// <summary>
+        ///     Deletes a genre by its Id.
+        /// </summary>
+        /// <param name="id">Unique genre Id</param>
+        /// <returns>IActionResult - NoContent / NotFound</returns>
+        /// <exception cref="Exception">Throws an exception if the deletion fails</exception>"
         [HttpDelete("DeleteAsync/{id}")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
