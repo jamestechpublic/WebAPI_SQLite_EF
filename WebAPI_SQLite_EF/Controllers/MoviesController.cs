@@ -6,7 +6,7 @@ namespace WebAPI_SQLite_EF.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MoviesController(IMovieService service) : ControllerBase
+    public class MoviesController(ILogger<MoviesController> logger, IMovieService service) : ControllerBase
     {
         /// <summary>
         ///     Gets all movies from the database.
@@ -21,12 +21,13 @@ namespace WebAPI_SQLite_EF.Controllers
                 var movies = await service.GetAllAsync();
 
                 if (movies == null || !movies.Any()) return NotFound();
-
+                
                 return Ok(movies);
             }
             catch (Exception ex)
             {
                 // Log the exception (not implemented here)
+                logger.LogError(ex.Message);
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }

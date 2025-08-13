@@ -1,5 +1,4 @@
-
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Scalar.AspNetCore;
 
 namespace WebAPI_SQLite_EF
@@ -14,6 +13,10 @@ namespace WebAPI_SQLite_EF
             builder.Services.AddDbContext<Data.MovieDataContext>();  //(options => options.UseSqlite(builder.Configuration.GetConnectionString("DbMovieData")));
             builder.Services.AddScoped<Services.IMovieService, Services.MovieService>();
             builder.Services.AddScoped<Services.IGenreService, Services.GenreService>();
+
+            // Add default logging
+            builder.Logging.ClearProviders();
+            builder.Logging.AddConsole(); // Add other providers as needed
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
