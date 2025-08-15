@@ -1,7 +1,8 @@
 using Microsoft.Extensions.Logging;
 using Scalar.AspNetCore;
-
-namespace WebAPI_SQLite_EF
+using Serilog; 
+  
+namespace WebAPI_SQLite_EF.Api
 {
     public class Program
     {
@@ -14,13 +15,17 @@ namespace WebAPI_SQLite_EF
             builder.Services.AddScoped<Services.IMovieService, Services.MovieService>();
             builder.Services.AddScoped<Services.IGenreService, Services.GenreService>();
 
-            // Add default logging
-            builder.Logging.ClearProviders();
-            builder.Logging.AddConsole(); // Add other providers as needed
+           Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Information()  
+                .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+                .Enrich.FromLogContext()
+                .CreateLogger();
+
+            builder.Host.UseSerilog();
 
             builder.Services.AddControllers();
             builder.Services.AddOpenApi();
-
+            
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.

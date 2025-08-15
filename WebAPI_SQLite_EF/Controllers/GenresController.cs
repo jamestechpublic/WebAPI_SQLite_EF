@@ -2,7 +2,7 @@
 using WebAPI_SQLite_EF.Services;
 using WebAPI_SQLite_EF.Shared.DTO;
 
-namespace WebAPI_SQLite_EF.Controllers
+namespace WebAPI_SQLite_EF.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

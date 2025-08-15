@@ -2,7 +2,7 @@
 using WebAPI_SQLite_EF.Services;
 using WebAPI_SQLite_EF.Shared.DTO;
 
-namespace WebAPI_SQLite_EF.Controllers
+namespace WebAPI_SQLite_EF.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -22,12 +22,14 @@ namespace WebAPI_SQLite_EF.Controllers
 
                 if (movies == null || !movies.Any()) return NotFound();
                 
+                logger.LogInformation("Retrieved {count} movies from the database.", movies.Count());
+
                 return Ok(movies);
             }
             catch (Exception ex)
             {
-                // Log the exception (not implemented here)
-                logger.LogError(ex.Message);
+                logger.LogError("{err}", ex.Message);
+
                 return StatusCode(500, "Internal server error: " + ex.Message);
             }
         }
