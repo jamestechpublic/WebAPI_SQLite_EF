@@ -17,7 +17,7 @@ namespace WebAPI_SQLite_EF.Api
 
            Log.Logger = new LoggerConfiguration()
                 .MinimumLevel.Information()  
-                .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.File(new Serilog.Formatting.Json.JsonFormatter(), "Logs/log.json", rollingInterval: RollingInterval.Day)
                 .Enrich.FromLogContext()
                 .CreateLogger();
 
