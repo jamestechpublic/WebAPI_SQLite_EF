@@ -7,11 +7,14 @@ Example demo of a C# WebAPI using standard architecture.
 * Data Context
 * Models
 * DTOs (included in shared project)
+* Serilog Logging
 
 ## About the Tools
 * Visual Studio 2022
 * .NET 9.0
 * Entity Framework Core v9
+* Scalar (API tester)
+* Serilog (logging)
 
 ## About the Data
 This example uses a SQLite database for simplicity.
